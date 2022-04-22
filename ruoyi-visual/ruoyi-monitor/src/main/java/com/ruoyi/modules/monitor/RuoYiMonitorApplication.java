@@ -1,5 +1,6 @@
 package com.ruoyi.modules.monitor;
 
+import com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import de.codecentric.boot.admin.server.config.EnableAdminServer;
@@ -10,7 +11,7 @@ import de.codecentric.boot.admin.server.config.EnableAdminServer;
  * @author ruoyi
  */
 @EnableAdminServer
-@SpringBootApplication
+@SpringBootApplication(exclude = {SentinelWebAutoConfiguration.class})
 public class RuoYiMonitorApplication
 {
     public static void main(String[] args)

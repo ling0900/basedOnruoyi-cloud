@@ -1,5 +1,6 @@
 package com.ruoyi.gen;
 
+import com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import com.ruoyi.common.security.annotation.EnableCustomConfig;
@@ -14,7 +15,7 @@ import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
 @EnableCustomConfig
 @EnableCustomSwagger2   
 @EnableRyFeignClients
-@SpringBootApplication
+@SpringBootApplication(exclude = {SentinelWebAutoConfiguration.class})
 public class RuoYiGenApplication
 {
     public static void main(String[] args)

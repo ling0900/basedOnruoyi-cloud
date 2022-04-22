@@ -1,5 +1,6 @@
 package com.ruoyi.file;
 
+import com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -11,7 +12,8 @@ import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
  * @author ruoyi
  */
 @EnableCustomSwagger2
-@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class })
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
+        SentinelWebAutoConfiguration.class})
 public class RuoYiFileApplication
 {
     public static void main(String[] args)
