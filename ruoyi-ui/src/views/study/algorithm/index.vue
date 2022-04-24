@@ -89,13 +89,13 @@
 
     <el-table v-loading="loading" :data="algorithmList" @selection-change="handleSelectionChange">
       <el-table-column type="selection" width="55" align="center" />
-      <el-table-column label="排序" align="center" prop="leetId" />
+<!--      <el-table-column label="排序" align="center" prop="leetId" />-->
       <el-table-column label="题目" align="center" prop="leetName" />
       <el-table-column label="描述" align="center" prop="description" />
       <el-table-column label="leetcode链接" align="center" prop="leetCodeUrl" />
       <el-table-column label="题目类型" align="center" prop="leetType" />
-      <el-table-column label="保留字段" align="center" prop="remark" />
-      <el-table-column label="是否被删除" align="center" prop="status">
+<!--      <el-table-column label="保留字段" align="center" prop="remark" />-->
+<!--      <el-table-column label="是否被删除" align="center" prop="status">-->
         <template slot-scope="scope">
           <dict-tag :options="dict.type.status" :value="scope.row.status"/>
         </template>
