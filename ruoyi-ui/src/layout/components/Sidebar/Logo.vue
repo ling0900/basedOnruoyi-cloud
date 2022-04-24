@@ -14,10 +14,10 @@
 </template>
 
 <script>
-import logoImg from '@/assets/logo/logo.png'
-import variables from '@/assets/styles/variables.scss'
+  import logoImg from '@/assets/logo/logo.png'
+  import variables from '@/assets/styles/variables.scss'
 
-export default {
+  export default {
   name: 'SidebarLogo',
   props: {
     collapse: {
@@ -35,7 +35,7 @@ export default {
   },
   data() {
     return {
-      title: '若依管理系统',
+      title: 'LH管理系统',
       logo: logoImg
     }
   }
