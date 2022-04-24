@@ -95,11 +95,11 @@
       <el-table-column label="leetcode链接" align="center" prop="leetCodeUrl" />
       <el-table-column label="题目类型" align="center" prop="leetType" />
 <!--      <el-table-column label="保留字段" align="center" prop="remark" />-->
-<!--      <el-table-column label="是否被删除" align="center" prop="status">-->
+      <!--<el-table-column label="是否被删除" align="center" prop="status">
         <template slot-scope="scope">
           <dict-tag :options="dict.type.status" :value="scope.row.status"/>
         </template>
-      </el-table-column>
+      </el-table-column>-->
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button
