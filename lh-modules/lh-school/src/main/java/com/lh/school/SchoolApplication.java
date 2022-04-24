@@ -1,6 +1,5 @@
 package com.lh.school;
 
-import com.ruoyi.common.security.annotation.EnableCustomConfig;
 import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 import com.ruoyi.common.security.annotation.EnableSchoolConfig;
 import com.ruoyi.common.swagger.annotation.EnableCustomSwagger2;
@@ -21,6 +20,7 @@ public class SchoolApplication
     public static void main(String[] args)
     {
         SpringApplication.run(SchoolApplication.class, args);
-        System.out.println("系统模块启动成功");
+
+        System.out.println("^_^school^_^模块启动成功");
     }
 }
