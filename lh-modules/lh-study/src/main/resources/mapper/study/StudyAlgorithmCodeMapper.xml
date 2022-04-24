@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lh.study.mapper.StudyAlgorithmCodeMapper">
+    
+    <resultMap type="StudyAlgorithmCode" id="StudyAlgorithmCodeResult">
+        <result property="leetId"    column="leet_id"    />
+        <result property="leetName"    column="leet_name"    />
+        <result property="description"    column="description"    />
+        <result property="leetCodeUrl"    column="leet_code_url"    />
+        <result property="leetType"    column="leet_type"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="updateTime"    column="update_time"    />
+        <result property="updateBy"    column="update_by"    />
+        <result property="remark"    column="remark"    />
+        <result property="status"    column="status"    />
+    </resultMap>
+
+    <sql id="selectStudyAlgorithmCodeVo">
+        select leet_id, leet_name, description, leet_code_url, leet_type, create_time, update_time, update_by, remark, status from study_algorithm_code
+    </sql>
+
+    <select id="selectStudyAlgorithmCodeList" parameterType="StudyAlgorithmCode" resultMap="StudyAlgorithmCodeResult">
+        <include refid="selectStudyAlgorithmCodeVo"/>
+        <where>  
+            <if test="leetName != null  and leetName != ''"> and leet_name like concat('%', #{leetName}, '%')</if>
+            <if test="description != null  and description != ''"> and description = #{description}</if>
+            <if test="leetCodeUrl != null  and leetCodeUrl != ''"> and leet_code_url = #{leetCodeUrl}</if>
+            <if test="leetType != null  and leetType != ''"> and leet_type = #{leetType}</if>
+            <if test="status != null  and status != ''"> and status = #{status}</if>
+        </where>
+    </select>
+    
+    <select id="selectStudyAlgorithmCodeByLeetId" parameterType="Integer" resultMap="StudyAlgorithmCodeResult">
+        <include refid="selectStudyAlgorithmCodeVo"/>
+        where leet_id = #{leetId}
+    </select>
+        
+    <insert id="insertStudyAlgorithmCode" parameterType="StudyAlgorithmCode" useGeneratedKeys="true" keyProperty="leetId">
+        insert into study_algorithm_code
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="leetName != null">leet_name,</if>
+            <if test="description != null">description,</if>
+            <if test="leetCodeUrl != null">leet_code_url,</if>
+            <if test="leetType != null">leet_type,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="remark != null">remark,</if>
+            <if test="status != null">status,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="leetName != null">#{leetName},</if>
+            <if test="description != null">#{description},</if>
+            <if test="leetCodeUrl != null">#{leetCodeUrl},</if>
+            <if test="leetType != null">#{leetType},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="status != null">#{status},</if>
+         </trim>
+    </insert>
+
+    <update id="updateStudyAlgorithmCode" parameterType="StudyAlgorithmCode">
+        update study_algorithm_code
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="leetName != null">leet_name = #{leetName},</if>
+            <if test="description != null">description = #{description},</if>
+            <if test="leetCodeUrl != null">leet_code_url = #{leetCodeUrl},</if>
+            <if test="leetType != null">leet_type = #{leetType},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="status != null">status = #{status},</if>
+        </trim>
+        where leet_id = #{leetId}
+    </update>
+
+    <delete id="deleteStudyAlgorithmCodeByLeetId" parameterType="Integer">
+        delete from study_algorithm_code where leet_id = #{leetId}
+    </delete>
+
+    <delete id="deleteStudyAlgorithmCodeByLeetIds" parameterType="String">
+        delete from study_algorithm_code where leet_id in 
+        <foreach item="leetId" collection="array" open="(" separator="," close=")">
+            #{leetId}
+        </foreach>
+    </delete>
+</mapper>

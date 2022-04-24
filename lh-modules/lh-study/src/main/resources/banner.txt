@@ -1,0 +1,19 @@
+Spring Boot Version: ${spring-boot.version}
+Spring Application Name: ${spring.application.name}
+
+
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
+                        服务启动：lh-study
