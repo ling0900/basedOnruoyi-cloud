@@ -1,12 +1,12 @@
 # Tomcat
 server:
-  port: 9201
+  port: 9301
 
 # Spring
 spring: 
   application:
     # 应用名称
-    name: ruoyi-my
+    name: lh-school
   profiles:
     # 环境配置
     active: dev
