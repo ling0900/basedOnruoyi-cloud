@@ -1,82 +1,74 @@
-package com.zuo.source.class04;
+package com.zuo.source.class04MergeSort;
 
-public class Code01_MergeSort {
+public class Code04_BiggerThanRightTwice {
 
-	// 递归方法实现
-	public static void mergeSort1(int[] arr) {
+	public static int biggerTwice(int[] arr) {
 		if (arr == null || arr.length < 2) {
-			return;
+			return 0;
 		}
-		process(arr, 0, arr.length - 1);
+		return process(arr, 0, arr.length - 1);
 	}
 
-	// 请把arr[L..R]排有序
-	// l...r N
-	// T(N) = 2 * T(N / 2) + O(N)
-	// O(N * logN)
-	public static void process(int[] arr, int L, int R) {
-		if (L == R) { // base case
-			return;
+	public static int process(int[] arr, int l, int r) {
+		if (l == r) {
+			return 0;
 		}
-		int mid = L + ((R - L) >> 1);
-		process(arr, L, mid);
-		process(arr, mid + 1, R);
-		merge(arr, L, mid, R);
+		// l < r
+		int mid = l + ((r - l) >> 1);
+		return process(arr, l, mid) + process(arr, mid + 1, r) + merge(arr, l, mid, r);
 	}
 
-	public static void merge(int[] arr, int L, int M, int R) {
-		int[] help = new int[R - L + 1];
+	public static int merge(int[] arr, int L, int m, int r) {
+		// [L....M]   [M+1....R]
+		
+		int ans = 0;
+		// 目前囊括进来的数，是从[M+1, windowR)
+		int windowR = m + 1;
+		for (int i = L; i <= m; i++) {
+			while (windowR <= r && arr[i] > (arr[windowR] * 2)) {
+				windowR++;
+			}
+			ans += windowR - m - 1;
+		}
+		
+		
+		int[] help = new int[r - L + 1];
 		int i = 0;
 		int p1 = L;
-		int p2 = M + 1;
-		while (p1 <= M && p2 <= R) {
+		int p2 = m + 1;
+		while (p1 <= m && p2 <= r) {
 			help[i++] = arr[p1] <= arr[p2] ? arr[p1++] : arr[p2++];
 		}
-		// 要么p1越界了，要么p2越界了
-		while (p1 <= M) {
+		while (p1 <= m) {
 			help[i++] = arr[p1++];
 		}
-		while (p2 <= R) {
+		while (p2 <= r) {
 			help[i++] = arr[p2++];
 		}
 		for (i = 0; i < help.length; i++) {
 			arr[L + i] = help[i];
 		}
+		return ans;
 	}
 
-	// 非递归方法实现
-	public static void mergeSort2(int[] arr) {
-		if (arr == null || arr.length < 2) {
-			return;
-		}
-		int N = arr.length;
-		// 步长
-		int mergeSize = 1;
-		while (mergeSize < N) { // log N
-			// 当前左组的，第一个位置
-			int L = 0;
-			while (L < N) {
-				if (mergeSize >= N - L) {
-					break;
+	// for test
+	public static int comparator(int[] arr) {
+		int ans = 0;
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i] > (arr[j] << 1)) {
+					ans++;
 				}
-				int M = L + mergeSize - 1;
-				int R = M + Math.min(mergeSize, N - M - 1);
-				merge(arr, L, M, R);
-				L = R + 1;
 			}
-			// 防止溢出
-			if (mergeSize > N / 2) {
-				break;
-			}
-			mergeSize <<= 1;
 		}
+		return ans;
 	}
 
 	// for test
 	public static int[] generateRandomArray(int maxSize, int maxValue) {
 		int[] arr = new int[(int) ((maxSize + 1) * Math.random())];
 		for (int i = 0; i < arr.length; i++) {
-			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) (maxValue * Math.random());
+			arr[i] = (int) ((maxValue + 1) * Math.random()) - (int) ((maxValue + 1) * Math.random());
 		}
 		return arr;
 	}
@@ -132,10 +124,8 @@ public class Code01_MergeSort {
 		for (int i = 0; i < testTime; i++) {
 			int[] arr1 = generateRandomArray(maxSize, maxValue);
 			int[] arr2 = copyArray(arr1);
-			mergeSort1(arr1);
-			mergeSort2(arr2);
-			if (!isEqual(arr1, arr2)) {
-				System.out.println("出错了！");
+			if (biggerTwice(arr1) != comparator(arr2)) {
+				System.out.println("Oops!");
 				printArray(arr1);
 				printArray(arr2);
 				break;

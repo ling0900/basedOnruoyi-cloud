@@ -1,4 +1,4 @@
-package com.zuo.source.class04;
+package com.zuo.source.class04MergeSort;
 
 public class Code03_ReversePair {
 

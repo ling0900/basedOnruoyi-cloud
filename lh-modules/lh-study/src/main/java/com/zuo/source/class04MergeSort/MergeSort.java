@@ -1,4 +1,4 @@
-package com.zuo.source.class04;
+package com.zuo.source.class04MergeSort;
 
 /**
  *@BelongsProject: ruoyi
@@ -42,7 +42,7 @@ public class MergeSort {
         
         // 定义左右数组的辅助指针
         int pL = indexL;
-        int pR = indexR;
+        int pR = indexM + 1;
         int index = 0;
         
         // 开始合并，用while比较合适。当两边辅助指针都没有越界才作比较。这里一定要想好相等的放谁。左！
