@@ -59,7 +59,7 @@ public class MergeSort {
             tempArr[index++] = arr[pL++];
         }
         
-        // 将辅助数组的值’copy‘原来的数组中。其实是修改原来数组的数值，不算是copy。
+        // 将辅助数组的值’copy‘原来的数组中。其实是修改原来数组的数值，不算是copy。其实上面的步骤是：分-排序-合。
         for (int i = 0; i < tempArr.length; i++) {
             arr[indexL + i] = tempArr[i];
         }
