@@ -1,10 +1,10 @@
 package com.ruoyi.auth;
 
 import com.alibaba.cloud.sentinel.SentinelWebAutoConfiguration;
+import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-import com.ruoyi.common.security.annotation.EnableRyFeignClients;
 
 /**
  * 认证授权中心
@@ -13,7 +13,7 @@ import com.ruoyi.common.security.annotation.EnableRyFeignClients;
  */
 @EnableRyFeignClients
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class,
-        SentinelWebAutoConfiguration.class })
+                                    SentinelWebAutoConfiguration.class})
 public class RuoYiAuthApplication
 {
     public static void main(String[] args)
